@@ -13,5 +13,8 @@ public class Main {
 				"spring/spring-idol.xml");
 		Performer performer = (Performer) ctx.getBean("duke");
 		performer.perfom();
+		
+		performer = (PoeticJuggler) ctx.getBean("poeticDuke");
+		performer.perfom();
 	}
 }

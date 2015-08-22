@@ -9,8 +9,16 @@
          <context:component-scan
             base-package="org.springframework.samples.service"/>  -->
             
-     <bean id="duke"
-     		class="classimpl.Juggler" />
+     <bean id="duke" class="classimpl.Juggler" >
+     	<constructor-arg value="15"></constructor-arg>
+     </bean>
+     
+     <bean id="sonnet29" class="classimpl.Sonnet29"></bean>
+     
+     <bean id="poeticDuke" class="classimpl.PoeticJuggler">
+     	<constructor-arg value="15"></constructor-arg>
+     	<constructor-arg ref="sonnet29"></constructor-arg>
+     </bean>
 
 </beans>
 
