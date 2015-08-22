@@ -19,12 +19,14 @@
      	<constructor-arg value="15"></constructor-arg>
      	<constructor-arg ref="sonnet29"></constructor-arg>
      </bean>
+     
+     <bean id="theStage" class="classimpl.Stage" factory-method="getInstance"></bean>
 
 </beans>
 
 
 
-<!-- 
+<!-- глава 2.1.4 https://www.assembla.com/spaces/gorsv/documents/aZ5WPupOSr457dacwqEsg8/download/aZ5WPupOSr457dacwqEsg8
 aop - Предоставляет элементы для объявления аспектов и для
 автоматического проксирования классов, объявляемых
 аспектами с помощью аннотации @AspectJ 
