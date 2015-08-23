@@ -16,5 +16,9 @@ public class Main {
 		
 		performer = (PoeticJuggler) ctx.getBean("poeticDuke");
 		performer.perfom();
+		
+		
+		performer = (Instrumentalist) ctx.getBean("kenny");
+		performer.perfom();
 	}
 }

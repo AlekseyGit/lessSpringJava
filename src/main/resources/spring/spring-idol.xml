@@ -3,7 +3,9 @@
 <beans xmlns="http://www.springframework.org/schema/beans" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
 	xmlns:context="http://www.springframework.org/schema/context"
 	xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd
-		http://www.springframework.org/schema/context http://www.springframework.org/schema/context/spring-context.xsd">
+		http://www.springframework.org/schema/context http://www.springframework.org/schema/context/spring-context.xsd"
+		default-init-method="turnOn"
+		default-destroy-method="turnOff" >
     
     <!-- Uncomment and add your base-package here:
          <context:component-scan
@@ -15,18 +17,68 @@
      
      <bean id="sonnet29" class="classimpl.Sonnet29"></bean>
      
-     <bean id="poeticDuke" class="classimpl.PoeticJuggler">
+     <bean id="poeticDuke" class="classimpl.PoeticJuggler" init-method="turnOnLights" destroy-method="turnOffLights">
      	<constructor-arg value="15"></constructor-arg>
      	<constructor-arg ref="sonnet29"></constructor-arg>
+     	<!--
+     	<constructor-arg>
+ 			<bean class="classimpl.Sonnet29" />
+ 		</constructor-arg> 
+     	 -->
+     	
      </bean>
      
      <bean id="theStage" class="classimpl.Stage" factory-method="getInstance"></bean>
+     
+     <bean id="auditorium"
+ 		class="classimpl.Auditorium"
+ 		init-method="turnOnLights"
+ 		destroy-method="turnOffLights" />
+ 		
+ 	<bean id="kenny" class="classimpl.Instrumentalist" >
+ 		<property name="song" value="Jingle Bells" />
+ 		<property name="instrument" ref="saxophone" />
+ 		
+ 		<!-- пример объявления внетреннего класса 
+ 		<property name="instrument">
+ 			<bean class="classimpl.Saxophone" />
+ 		</property>
+ 		 -->
+ 	</bean>
+ 	
+ 	<bean id="saxophone" class="classimpl.Saxophone" />
 
 </beans>
 
 
 
-<!-- глава 2.1.4 https://www.assembla.com/spaces/gorsv/documents/aZ5WPupOSr457dacwqEsg8/download/aZ5WPupOSr457dacwqEsg8
+<!-- 2.2.4. Внедрение коллекций https://www.assembla.com/spaces/gorsv/documents/aZ5WPupOSr457dacwqEsg8/download/aZ5WPupOSr457dacwqEsg8
+
+
+##############################################
+##############################################
+<bean id="ticket" class="com.springinaction.springidol.Ticket" scope="prototype" />
+
+singleton В каждом контейнере Spring может быть создан только
+один компонент (по умолчанию)
+
+prototype Позволяет создавать произвольное количество
+компонентов (по одному на каждое обращение)
+
+request Область действия компонента ограничивается
+HTTP-запросом. Может применяться только в веб-прило-
+жениях Spring (например, использующих Spring MVC)
+
+session Область действия компонента ограничивается
+HTTP-сеансом. Может применяться только в веб-прило-
+жениях Spring (например, использующих Spring MVC)
+
+global-session Область действия компонента ограничивается
+глобальным HTTP-сеансом. Может применяться только
+в портлетах
+##############################################
+##############################################
+
 aop - Предоставляет элементы для объявления аспектов и для
 автоматического проксирования классов, объявляемых
 аспектами с помощью аннотации @AspectJ 
@@ -59,4 +111,7 @@ tx - Содержит элементы настройки декларативн
 util - Набор различных вспомогательных элементов, включающий
 возможность объявления коллекций как компонентов
 и поддержку элементов-заполнителей свойств
+
+
+
  -->

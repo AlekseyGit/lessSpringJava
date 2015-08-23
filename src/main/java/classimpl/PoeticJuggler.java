@@ -22,5 +22,20 @@ public class PoeticJuggler extends Juggler {
 		System.out.println("While reciting... ");
 		poem.recite();
 	}
+	
+	public void turnOn(){
+		System.out.println("turnOn");
+	}
+	
+	public void turnOff(){
+		System.out.println("turnOff");
+	}
 
+	public void turnOnLights(){
+		System.out.println("turnOnLights");
+	}
+	
+	public void turnOffLights(){
+		System.out.println("turnOffLights");
+	}
 }
